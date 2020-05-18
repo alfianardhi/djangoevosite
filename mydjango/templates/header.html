@@ -1,3 +1,5 @@
+{% load static %}
+
 <!-- Preloader -->
 	<div class="spinner-wrapper">
         <div class="spinner">
@@ -15,7 +17,7 @@
         <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Evolo</a> -->
 
         <!-- Image Logo -->
-        <a class="navbar-brand logo-image" href="index.html"><img src="images/logo.svg" alt="alternative"></a>
+        <a class="navbar-brand logo-image" href="index.html"><img src="{% static 'images/logo.svg'%}" alt="alternative"></a>
 
         <!-- Mobile Menu Toggle Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,16 +40,19 @@
                 <li class="nav-item">
                     <a class="nav-link page-scroll" href="#request-dashboard">Dashboard</a>
                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link page-scroll" href="/about">About</a>
+                </li>
 
                 <!-- Dropdown Menu -->
-                <li class="nav-item dropdown">
+                <!--<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle page-scroll" href="#about" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">About</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="terms-conditions.html"><span class="item-text">Terms Conditions</span></a>
                         <div class="dropdown-items-divide-hr"></div>
                         <a class="dropdown-item" href="privacy-policy.html"><span class="item-text">Privacy Policy</span></a>
                     </div>
-                </li>
+                </li>-->
                 <!-- end of dropdown menu -->
 		<li class="nav-item">
                     <a class="nav-link page-scroll" href="#blog">Blog</a>
@@ -92,7 +97,7 @@
                     </div> <!-- end of col -->
                     <div class="col-lg-6">
                         <div class="image-container">
-                            <img class="img-fluid" src="images/header-teamwork.svg" alt="alternative">
+                            <img class="img-fluid" src="{% static 'images/header-teamwork.svg'%}" alt="alternative">
                         </div> <!-- end of image-container -->
                     </div> <!-- end of col -->
                 </div> <!-- end of row -->
