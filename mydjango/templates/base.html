@@ -5,10 +5,14 @@
 
 <body data-spy="scroll" data-target=".fixed-top">
 
-{% include "header.html" %}
+{% block headercontent %}
+{% endblock headercontent %}
 
 {% block content %}
 {% endblock content %}
+
+{% block footercontent %}
+{% endblock footercontent %}
 
 {% include "footer.html" %}
 {% include "scripts.html" %}

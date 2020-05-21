@@ -1,8 +1,11 @@
-{% extends 'base2.html' %}
+{% extends 'base.html' %}
 
 {% load static %}
 
-{% block content %}
+{% block headercontent %}
+
+{% include "navigation2.html" %}
+
 <!-- Header -->
     <header id="header" class="ex-header">
         <div class="container">
@@ -15,21 +18,10 @@
     </header> <!-- end of ex-header -->
     <!-- end of header -->
 
-    <!-- Breadcrumbs -->
-    <div class="ex-basic-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumbs">
+    {% include "breadcrumbs.html" %}
+{% endblock headercontent %}
 
-                    </div> <!-- end of breadcrumbs -->
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of ex-basic-1 -->
-    <!-- end of breadcrumbs -->
-
-
+{% block content %}
     <!-- Terms Content -->
     <div class="ex-basic-2">
         <div class="container">
@@ -93,20 +85,8 @@
         </div> <!-- end of container -->
     </div> <!-- end of ex-basic -->
     <!-- end of terms content -->
-
-
-    <!-- Breadcrumbs -->
-    <div class="ex-basic-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumbs">
-
-                    </div> <!-- end of breadcrumbs -->
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of ex-basic-1 -->
-    <!-- end of breadcrumbs -->
-
 {% endblock content %}
+
+{% block footercontent %}
+    {% include "breadcrumbs.html" %}
+{% endblock footercontent %}
