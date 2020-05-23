@@ -123,6 +123,16 @@ a.white {
 	color: #fff;
 }
 
+a.blog{
+	color: #393939;
+	text-decoration: none;
+}
+
+a.blog:hover {
+	color: #00BFD8;
+	text-decoration: none;
+}
+
 .testimonial-text {
 	font: italic 400 1rem/1.5rem "Raleway", sans-serif;
 }
