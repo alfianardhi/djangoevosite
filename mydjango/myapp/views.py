@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Post
 
 def index(request):
     return render(request, 'index.html',{})
@@ -13,4 +14,8 @@ def privacy(request):
     return render(request, 'privacy-policy.html',{})
 
 def blog(request):
-    return render(request, 'blog.html',{})
+    posts = Post.objects.all().order_by('-created_on')
+    context = {
+        'posts':posts
+    }
+    return render(request, 'blog.html',context)

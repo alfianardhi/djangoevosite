@@ -27,28 +27,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
-
-                    <div class="text-container">
-                        <h3>License Types & Template Usage</h3>
-                        <p>All our templates inherit the GNU general public license from HTML. All .PSD & CSS files are packaged separately and are not licensed under the GPL 2.0. Instead, these files inherit Evolo Personal Use License. These files are given to all Clients on a personal use basis. You may not offer them, <a class="turquoise" href="#your-link">modified or unmodified</a>, for redistribution or resale of any kind. You can’t use one of our themes on a HTML domain. More on HTML Vs CSS, you can read here. You can use our templates do develop sites for your clients.</p>
-                        <p>Services help our customers promote their products and services, marketing and advertising; engaging audiences; scheduling and publishing messages; and analyze the results.</p>
-                    </div> <!-- end of text-container -->
-
-                    <div class="text-container">
-                       <h3><a class="blog" href="#">License Types & Template Usage</a></h3>
-                        <small>
-                            Category Python
-                        </small>
-                        <p>Hallo semua pembaca ini artikel...</p>
-                    </div> <!-- end of text-container -->
-
-                    <div class="text-container">
-                       <h3><a class="blog" href="#">Ini Titel Keren Yang</a></h3>
-                        <small>
-                            Category Python
-                        </small>
-                        <p>Hallo semua pembaca ini artikel...</p>
-                    </div> <!-- end of text-container -->
+                    {% for post in posts %}
+                        <div class="text-container">
+                           <h3><a class="blog" href="#">{{ post.title }}</a></h3>
+                            <small>
+                                {{ post.created_on.date }} |&nbsp;
+                                Categories:&nbsp;
+                                {% for category in post.categories.all %}
+                                    {{ category.name }}
+                                &nbsp;
+                                {% endfor %}
+                            </small>
+                            <p>{{ post.body | slice:":500" }}...</p>
+                        </div> <!-- end of text-container -->
+                    {% endfor %}
                 </div>
             </div> <!-- end of row -->
         </div> <!-- end of container -->
