@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block headercontent %}
+
+{% include "navigation2.html" %}
+
+<!-- Header -->
+    <header id="header" class="ex-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Blog Company</h1>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </header> <!-- end of ex-header -->
+    <!-- end of header -->
+
+    {% include "breadcrumbs.html" %}
+{% endblock headercontent %}
+
+{% block content %}
+    <!-- Terms Content -->
+    <div class="ex-basic-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    {% for post in posts %}
+                        <div class="text-container">
+                           <h3><a class="blog" href="{% url 'blog-detail-page' id=post.pk %}">{{ post.title }}</a></h3>
+                            <small>
+                                {{ post.created_on.date }} |&nbsp;
+                                Categories:&nbsp;
+                                {% for category in post.categories.all %}
+                                    {{ category.name }}
+                                &nbsp;
+                                {% endfor %}
+                            </small>
+                            <p>{{ post.body | slice:":500" }}...</p>
+                        </div> <!-- end of text-container -->
+                    {% endfor %}
+                </div>
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of ex-basic -->
+    <!-- end of terms content -->
+
+{% endblock content %}
+
+{% block footercontent %}
+    {% include "breadcrumbs.html" %}
+{% endblock footercontent %}
