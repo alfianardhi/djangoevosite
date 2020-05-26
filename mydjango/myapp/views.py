@@ -19,3 +19,25 @@ def blog(request):
         'posts':posts
     }
     return render(request, 'blog.html',context)
+
+def blog_detail(request, id):
+    post = Post.objects.get(pk=id)
+
+    '''form = CommentForm()
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = Comment(
+                author=form.cleaned_data["author"],
+                body=form.cleaned_data["body"],
+                post=post
+            )
+            comment.save()
+
+    comments = Comment.objects.filter(post=post)'''
+    context = {
+        "post": post,
+        #"comments": comments,
+        #"form": form,
+    }
+    return render(request, "blog-detail.html", context)

@@ -24,10 +24,11 @@ from myapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
-    path('about/', views.about),
-    path('termnco/', views.termnco),
-    path('privacy/', views.privacy),
-    path('blog/', views.blog),
+    path('about/', views.about, name="about-page"),
+    path('termnco/', views.termnco, name="termnco-page"),
+    path('privacy/', views.privacy, name="privacy-page"),
+    path('blog/', views.blog, name="blog-list-page"),
+    path('blog/<id>/', views.blog_detail, name="blog-detail-page")
 
 ]
 
