@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Post
+from .models import Post, Comment
+from .forms import CommentForm
 
 def index(request):
     return render(request, 'index.html',{})
@@ -24,21 +25,21 @@ def blog_detail(request, id):
     #post = Post.objects.get(id=id)
     post = get_object_or_404(Post, id=id)
 
-    '''form = CommentForm()
+    form = CommentForm()
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = Comment(
-                author=form.cleaned_data["author"],
+                author_comment=form.cleaned_data["author"],
                 body=form.cleaned_data["body"],
                 post=post
             )
             comment.save()
 
-    comments = Comment.objects.filter(post=post)'''
+    comments = Comment.objects.filter(post=post)
     context = {
         "post": post,
-        #"comments": comments,
-        #"form": form,
+        "comments": comments,
+        "form": form,
     }
     return render(request, "blog-detail.html", context)
