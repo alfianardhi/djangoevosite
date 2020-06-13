@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
-
+from tinymce import HTMLField
 
 User = get_user_model()
 
@@ -22,6 +22,7 @@ class Author(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=255)
     body = models.TextField()
+    content = HTMLField()
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now_add=True)
     comment_count = models.IntegerField(default=0)

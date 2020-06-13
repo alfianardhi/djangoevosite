@@ -17,7 +17,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from myapp import views
 
@@ -28,8 +28,8 @@ urlpatterns = [
     path('termnco/', views.termnco, name="termnco-page"),
     path('privacy/', views.privacy, name="privacy-page"),
     path('blog/', views.blog, name="blog-list-page"),
-    path('blog/<id>/', views.blog_detail, name="blog-detail-page")
-
+    path('blog/<id>/', views.blog_detail, name="blog-detail-page"),
+    path('tinymce/', include('tinymce.urls'))
 ]
 
 """if settings.DEBUG:

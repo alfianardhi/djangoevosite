@@ -36,7 +36,7 @@
                         &nbsp;
                         {% endfor %}
                     </small>
-                    <p>{{ post.body | linebreaks }}</p>
+                    <p>{{ post.content | safe}}</p>
                     <br/>
                     <h3>Leave a comment:</h3>
                     <form action="/blog/{{ post.pk }}/" method="post">
