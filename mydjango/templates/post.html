@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block headercontent %}
+
+{% include "navigation2.html" %}
+
+<!-- Header -->
+    <header id="header" class="ex-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Article Post</h1>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </header> <!-- end of ex-header -->
+    <!-- end of header -->
+
+    {% include "breadcrumbs.html" %}
+{% endblock headercontent %}
+
+{% block content %}
+
+
+
+{% endblock content %}
+
+{% block footercontent %}
+    {% include "breadcrumbs.html" %}
+{% endblock footercontent %}
