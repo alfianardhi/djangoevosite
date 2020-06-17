@@ -34,8 +34,7 @@
                                 {{ post.created_on.date }} |&nbsp;
                                 Categories:&nbsp;
                                 {% for category in post.categories.all %}
-                                    {{ category.name }}
-                                &nbsp;
+                                    {{ category.name }}&nbsp;
                                 {% endfor %}
                             </small>
                             <p>{{ post.body | slice:":500" }} ... </p>

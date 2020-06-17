@@ -38,6 +38,16 @@ class Post(models.Model):
             'id':self.id
         })
 
+    def get_update_url(self):
+        return reverse('blog-update-page', kwargs={
+            'id':self.id
+        })
+
+    def get_delete_url(self):
+        return reverse('blog-delete-page', kwargs={
+            'id':self.id
+        })
+
 class Comment(models.Model):
     author_comment = models.CharField(max_length=60)
     body = models.TextField()

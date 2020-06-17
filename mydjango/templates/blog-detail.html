@@ -29,13 +29,15 @@
                 <div class="col-lg-10 offset-lg-1">
                     <h1>{{ post.title }}</h1>
                     <small>
-                        {{ post.created_on.date }} |&nbsp;
-                        Categories:&nbsp;
+                        {{ post.created_on.date }}&nbsp;|&nbsp;
+                        Categories:&nbsp
                         {% for category in post.categories.all %}
-                            {{ category.name }}
-                        &nbsp;
-                        {% endfor %}
+                            {{ category.name }}&nbsp;
+                        {% endfor %}|
+                        &nbsp;<a href="">Update</a>&nbsp;<a href="">Delete</a>
+
                     </small>
+
                     <p>{{ post.content | safe}}</p>
                     <br/>
                     <h3>Leave a comment:</h3>

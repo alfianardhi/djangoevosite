@@ -1,9 +1,15 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Post, Comment
-from .forms import CommentForm
+from django.shortcuts import render, get_object_or_404, redirect, reverse
+from .models import Post, Comment, Author
+from .forms import CommentForm, PostForm
 
 def index(request):
     return render(request, 'index.html',{})
+
+def get_author(user):
+    get_data = Author.objects.filter(user=user)
+    if get_data.exists():
+        return get_data[0]
+    return None
 
 def about(request):
     return render(request, 'about.html',{})
@@ -43,3 +49,25 @@ def blog_detail(request, id):
         "form": form,
     }
     return render(request, "blog-detail.html", context)
+
+def blog_update(request, id):
+    pass
+
+def blog_delete(request, id):
+    pass
+
+def blog_create(request):
+    form = PostForm(request.POST or None, request.FILES or None)
+    author = get_author(request.user)
+    if request.method == "POST":
+        if form.is_valid():
+            form.instance.author = author
+            form.save()
+            return redirect(reverse("blog-detail-page", kwargs={
+                'id': form.instance.id
+            }))
+
+    context = {
+        "form": form,
+    }
+    return render(request, "blog-create.html", context)

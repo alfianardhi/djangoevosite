@@ -37,13 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'tinymce',
     'myapp',
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 TINYMCE_DEFAULT_CONFIG = {
-    'height': 360,
-    'width': 1120,
+    #'height': 360,
+    #'width': 1120,
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 20,
     'selector': 'textarea',
