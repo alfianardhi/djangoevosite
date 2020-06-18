@@ -33,8 +33,9 @@
                         Categories:&nbsp
                         {% for category in post.categories.all %}
                             {{ category.name }}&nbsp;
-                        {% endfor %}|
-                        &nbsp;<a href="">Update</a>&nbsp;<a href="">Delete</a>
+                        {% endfor %} {% if request.user.is_staff %}|
+                        &nbsp;<a href="{%url 'blog-update-page' id=post.id%}">Update</a>&nbsp;<a href="{%url 'blog-delete-page' id=post.id%}">Delete</a>
+                         {% endif %}
 
                     </small>
 
