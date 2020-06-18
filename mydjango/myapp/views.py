@@ -46,17 +46,36 @@ def blog_detail(request, id):
     context = {
         "post": post,
         "comments": comments,
-        "form": form,
+        "form": form
     }
     return render(request, "blog-detail.html", context)
 
 def blog_update(request, id):
-    pass
+    editor_title="Update"
+    post = get_object_or_404(Post, id=id)
+    form = PostForm(request.POST or None, request.FILES or None, instance=post)
+    author = get_author(request.user)
+    if request.method == "POST":
+        if form.is_valid():
+            form.instance.author = author
+            form.save()
+            return redirect(reverse("blog-detail-page", kwargs={
+                'id': form.instance.id
+            }))
+
+    context = {
+        "form": form,
+        "editor_title": editor_title
+    }
+    return render(request, "blog-create.html", context)
 
 def blog_delete(request, id):
-    pass
+    post = get_object_or_404(Post, id=id)
+    post.delete()
+    return redirect(reverse("blog-list-page"))
 
 def blog_create(request):
+    editor_title = "Create"
     form = PostForm(request.POST or None, request.FILES or None)
     author = get_author(request.user)
     if request.method == "POST":
@@ -69,5 +88,6 @@ def blog_create(request):
 
     context = {
         "form": form,
+        "editor_title":editor_title
     }
     return render(request, "blog-create.html", context)
