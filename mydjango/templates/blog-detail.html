@@ -29,15 +29,41 @@
                 <div class="col-lg-10 offset-lg-1">
                     <h1>{{ post.title }}</h1>
                     <small>
-                        {{ post.created_on.date }} |&nbsp;
-                        Categories:&nbsp;
+                        {{ post.created_on.date }}&nbsp;|&nbsp;
+                        Categories:&nbsp
                         {% for category in post.categories.all %}
-                            {{ category.name }}
-                        &nbsp;
-                        {% endfor %}
+                            {{ category.name }}&nbsp;
+                        {% endfor %} {% if request.user.is_staff %}|
+                        &nbsp;<a href="{%url 'blog-update-page' id=post.id%}">Update</a>&nbsp;<a href="{%url 'blog-delete-page' id=post.id%}">Delete</a>
+                         {% endif %}
+
                     </small>
-                    <p>{{ post.body | linebreaks }}</p>
+
+                    <p>{{ post.content | safe}}</p>
+                    <br/>
                     <h3>Leave a comment:</h3>
+                    <form action="/blog/{{ post.pk }}/" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.author }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.body }}
+                        </div>
+                        <!--<button type="submit" class="btn-solid-reg popup-with-move-anim">Submit</button>-->
+                        <button type="submit" class="btn btn-solid-reg">Submit</button>
+                        <!-- btn btn-primary -->
+                    </form>
+                    <br/>
+                    <h3>Comments:</h3>
+                    {% for comment in comments %}
+                    <p>
+                        On {{comment.created_on.date }}&nbsp;
+                        <b>{{ comment.author_comment }}</b> wrote:
+                    </p>
+                    <p>{{ comment.body }}</p>
+                    <hr>
+                    {% endfor %}
                 </div>
             </div> <!-- end of row -->
         </div> <!-- end of container -->

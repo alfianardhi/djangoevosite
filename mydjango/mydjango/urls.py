@@ -17,7 +17,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from myapp import views
 
@@ -28,12 +28,15 @@ urlpatterns = [
     path('termnco/', views.termnco, name="termnco-page"),
     path('privacy/', views.privacy, name="privacy-page"),
     path('blog/', views.blog, name="blog-list-page"),
-    path('blog/<id>/', views.blog_detail, name="blog-detail-page")
-
+    path('blog/<id>/', views.blog_detail, name="blog-detail-page"),
+    path('create/', views.blog_create, name="blog-create-page"),
+    path('blog/<id>/update/', views.blog_update, name="blog-update-page"),
+    path('blog/<id>/delete/', views.blog_delete, name="blog-delete-page"),
+    path('tinymce/', include('tinymce.urls'))
 ]
 
-"""if settings.DEBUG:
+if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,
                           document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL,
+    """urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)"""

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block headercontent %}
+
+{% include "navigation2.html" %}
+
+<!-- Header -->
+    <header id="header" class="ex-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ editor_title }} Article</h1>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </header> <!-- end of ex-header -->
+    <!-- end of header -->
+
+    {% include "breadcrumbs.html" %}
+{% endblock headercontent %}
+
+{% block content %}
+<div class="col-6 offset-3">
+    {{form.media}}
+<form action="." method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{form | crispy}}
+    <button type="submit" class="btn btn-solid-reg">Submit</button>
+</form>
+</div>
+
+{% endblock content %}
+
+{% block footercontent %}
+    {% include "breadcrumbs.html" %}
+{% endblock footercontent %}

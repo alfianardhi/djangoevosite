@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-
+from django.urls import reverse
+from tinymce import HTMLField
 
 User = get_user_model()
 
@@ -21,6 +22,7 @@ class Author(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=255)
     body = models.TextField()
+    content = HTMLField()
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now_add=True)
     comment_count = models.IntegerField(default=0)
@@ -31,6 +33,21 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('blog-detail-page', kwargs={
+            'id':self.id
+        })
+
+    def get_update_url(self):
+        return reverse('blog-update-page', kwargs={
+            'id':self.id
+        })
+
+    def get_delete_url(self):
+        return reverse('blog-delete-page', kwargs={
+            'id':self.id
+        })
+
 class Comment(models.Model):
     author_comment = models.CharField(max_length=60)
     body = models.TextField()
@@ -38,4 +55,4 @@ class Comment(models.Model):
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.author
+        return self.author_comment
