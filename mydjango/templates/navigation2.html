@@ -46,11 +46,11 @@
 
 
 		        <li class="nav-item">
-                    <a class="nav-link page-scroll" href="/blog">Blog</a>
+                    <a class="nav-link page-scroll" href="{% url "blog-list-page" %}">Blog</a>
                 </li>
                 {% if request.user.is_staff %}
 		        <li class="nav-item">
-                    <a class="nav-link page-scroll" href="/create">Create</a>
+                    <a class="nav-link page-scroll" href="{% url "blog-create-page" %}">Create</a>
                 </li>
                 {% endif %}
                 <li class="nav-item">
