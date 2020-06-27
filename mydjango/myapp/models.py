@@ -28,7 +28,7 @@ class Post(models.Model):
     last_modified = models.DateTimeField(auto_now_add=True)
     comment_count = models.IntegerField(default=0)
     thumbnail = models.ImageField()
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(blank=True, editable=False)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     categories = models.ManyToManyField('Category', related_name='posts')
 
