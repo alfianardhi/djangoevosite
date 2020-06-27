@@ -27,9 +27,10 @@ def blog(request):
     }
     return render(request, 'blog.html',context)
 
-def blog_detail(request, id):
+def blog_detail(request, slug):
     #post = Post.objects.get(id=id)
-    post = get_object_or_404(Post, id=id)
+    #post = get_object_or_404(Post, id=id)
+    post = get_object_or_404(Post, slug=slug)
 
     form = CommentForm()
     if request.method == 'POST':
@@ -60,7 +61,7 @@ def blog_update(request, id):
             form.instance.author = author
             form.save()
             return redirect(reverse("blog-detail-page", kwargs={
-                'id': form.instance.id
+                'slug': form.instance.slug
             }))
 
     context = {
@@ -83,7 +84,7 @@ def blog_create(request):
             form.instance.author = author
             form.save()
             return redirect(reverse("blog-detail-page", kwargs={
-                'id': form.instance.id
+                'slug': form.instance.slug
             }))
 
     context = {

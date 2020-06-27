@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from tinymce import HTMLField
+from django.utils.text import slugify
 
 User = get_user_model()
 
@@ -27,15 +28,20 @@ class Post(models.Model):
     last_modified = models.DateTimeField(auto_now_add=True)
     comment_count = models.IntegerField(default=0)
     thumbnail = models.ImageField()
+    slug = models.SlugField(blank=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     categories = models.ManyToManyField('Category', related_name='posts')
 
     def __str__(self):
         return self.title
 
+    def save(self):
+        self.slug = slugify(self.title)
+        super(Post, self).save()
+
     def get_absolute_url(self):
         return reverse('blog-detail-page', kwargs={
-            'id':self.id
+            'slug': self.slug
         })
 
     def get_update_url(self):
