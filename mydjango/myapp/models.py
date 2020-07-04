@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from tinymce import HTMLField
 from django.utils.text import slugify
+from .validators import validate_author_comment
 
 User = get_user_model()
 
@@ -55,7 +56,7 @@ class Post(models.Model):
         })
 
 class Comment(models.Model):
-    author_comment = models.CharField(max_length=60)
+    author_comment = models.CharField(max_length=60, validators=[validate_author_comment])
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey('Post', on_delete=models.CASCADE)

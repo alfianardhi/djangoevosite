@@ -17,7 +17,7 @@
         <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Evolo</a> -->
 
         <!-- Image Logo -->
-        <a class="navbar-brand logo-image" href="index.html"><img src="{% static 'images/logo.svg'%}" alt="alternative"></a>
+        <a class="navbar-brand logo-image" href="{% url "index" %}"><img src="{% static 'images/logo.svg'%}" alt="alternative"></a>
 
         <!-- Mobile Menu Toggle Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,12 +34,9 @@
                 <li class="nav-item">
                     <a class="nav-link page-scroll" href="#services">Services</a>
                 </li>
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="nav-link page-scroll" href="#pricing">Pricing</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#request-dashboard">Dashboard</a>
-                </li>
+                </li>-->
                  <li class="nav-item">
                     <a class="nav-link page-scroll" href="{% url "about-page" %}">About</a>
                 </li>
@@ -54,9 +51,6 @@
                 {% endif %}
                 <li class="nav-item">
                     <a class="nav-link page-scroll" href="#contact">Contact</a>
-                </li>
-		<li class="nav-item">
-                    <a class="nav-link page-scroll" href="#">Login</a>
                 </li>
             </ul>
             <span class="nav-item social-icons">
